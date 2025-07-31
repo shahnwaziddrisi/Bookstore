@@ -14,7 +14,7 @@ const addingBook = async (req, res) => {
 
     const book = await bookModel.create(newBook);
 
-    return res.status(201).send(book);
+    return res.status(201).json({ message: "Book Added succesfully!!" });
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: err.message });

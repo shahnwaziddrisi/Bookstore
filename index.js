@@ -5,9 +5,10 @@ import addBooks from "./routes/addBooks.js";
 import getBooks from "./routes/getBooks.js";
 import updateBooks from "./routes/updateBooks.js";
 import deleteBooks from "./routes/deleteBooks.js";
+import dotenv from "dotenv";
 
 let app = express();
-let PORT = 5555;
+dotenv.config(); //to read env file
 
 // middleware for parsing request body
 app.use(express.json());
@@ -25,12 +26,14 @@ app.use("/deleteBooks", deleteBooks);
 
 mongoose
   .connect(
-    "mongodb+srv://shahnwaziddrisi:78r20oFhDEuAZuoV@cluster0.chxitmu.mongodb.net/"
+    process.env.DB_URL
   )
   .then(() => {
     console.log("DB connected Successfully");
-    app.listen(PORT, () => {
-      console.log(`App is running at port number http://localhost:${PORT}`);
+    app.listen(process.env.PORT, () => {
+      console.log(
+        `App is running at port number http://localhost:${process.env.PORT}`
+      );
     });
   })
   .catch((err) => console.log(err));
