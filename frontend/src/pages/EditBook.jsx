@@ -39,7 +39,7 @@ const EditBook = () => {
     };
     setLoading(true);
     axios
-      .put(`http://localhost:5555/books/edit/${id}`, data)
+      .put(`https://bookstore-api-tmw6.onrender.com/books/edit/${id}`, data)
       .then(() => {
         setLoading(false);
         enqueueSnackbar("Book Edited Succesfully", { variant: "success" });
